@@ -8,8 +8,11 @@
     "build": "tsc -b",
     "dev": "tsx src/index.ts"
   },
+
   "keywords": [],
   "dependencies": {
+    "@repo/common":"workspace:*",
+    "@repo/backend-common":"workspace:*",
     "@repo/db": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/bcrypt": "^6.0.0",
@@ -22,10 +25,15 @@
     "jsonwebtoken": "^9.0.3",
     "zod": "^4.3.6"
   },
+   "devDependencies": {
+    "@repo/backend-common": "workspace:*",
+    "@repo/db": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "tsx": "^4.21.0"
+  },
+  
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "devDependencies": {
-    "tsx": "^4.21.0"
-  }
+  "type": "commonjs"
+
 }

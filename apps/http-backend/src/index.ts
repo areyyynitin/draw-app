@@ -1,24 +1,20 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "./config";
 import { prisma } from "@repo/db";
 import { z } from "zod";
 import dotenv from "dotenv"
 import { authMiddleware } from "./middleware";
-import { CreateRoomSchema, CreateUserSchema, existedUser } from "./types/types";
+import { JWT_SECRET } from "@repo/backend-common";
+import { CreateRoomSchema, CreateUserSchema, SignInSchema } from "@repo/common/types";
 
 
 dotenv.config();
 const app = express();
 app.use(express.json());
 
-
-
-
 app.post("/signup", async (req, res) => {
   try {
-    // ✅ Validate input
     const parsedData = CreateUserSchema.safeParse(req.body);
 
     if (!parsedData.success) {
@@ -63,7 +59,7 @@ app.post("/signup", async (req, res) => {
 
 app.post("/signin", async (req, res) => {
   try {
-    const parsedData = existedUser.safeParse(req.body);
+    const parsedData = SignInSchema.safeParse(req.body);
 
     if (!parsedData.success) {
       return res.status(400).json({
@@ -74,7 +70,6 @@ app.post("/signin", async (req, res) => {
 
     const { email, password } = parsedData.data;
 
-    // 1️⃣ Find user by email only
     const user = await prisma.user.findUnique({
       where: { email }
     });
@@ -85,7 +80,6 @@ app.post("/signin", async (req, res) => {
       });
     }
 
-    // 2️⃣ Compare password with bcrypt
     const isPasswordValid = await bcrypt.compare(
       password,
       user.password
@@ -97,7 +91,6 @@ app.post("/signin", async (req, res) => {
       });
     }
 
-    // 3️⃣ Generate token
     const token = jwt.sign(
       { userId: user.id },
       JWT_SECRET,
