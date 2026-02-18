@@ -1,13 +1,11 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { prisma } from "@repo/db";
-import { z } from "zod";
 import dotenv from "dotenv"
 import { authMiddleware } from "./middleware";
 import { JWT_SECRET } from "@repo/backend-common";
 import { CreateRoomSchema, CreateUserSchema, SignInSchema } from "@repo/common/types";
-
+import { prisma } from "@repo/db/client";
 
 dotenv.config();
 const app = express();
