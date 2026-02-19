@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "exports":{
-    ".":"./src/config.ts"
+    "./config":"./src/config.ts",
+    "./global":"./src/global.d.ts"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

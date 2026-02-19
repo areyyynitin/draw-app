@@ -1,1 +1,1 @@
-export const JWT_SECRET = process.env.JWT_SECRET || "randomvariable"
+export const JWT_SECRET =  "randomvariable"
