@@ -137,6 +137,39 @@ app.post("/create-room" ,authMiddleware , async (req,res) => {
 
 })
 
+
+app.get("/chats/:roomId" , async (req,res) => {
+try {
+    const roomId = Number(req.params.roomId)
+    const messages = await prisma.chat.findMany({
+      where:{
+        roomId:roomId
+      },
+      orderBy:{
+        id:'desc'
+      },
+      take:50
+    })
+  
+    res.json({messages})
+} catch (error) {
+  console.log(error)
+  res.json({message:[]})
+}
+})
+
+
+
+app.get("/room/:id", async (req, res) => {
+  const id = Number(req.params.id);
+
+  const room = await prisma.room.findUnique({
+    where: { id },
+  });
+
+  res.json({ room });
+});
+
 app.listen(3001, () => {
   console.log("Server is running on port 3001");
 });
