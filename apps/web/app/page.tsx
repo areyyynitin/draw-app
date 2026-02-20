@@ -23,6 +23,7 @@ export default function Home() {
     onChange={(e) => {setRoomId(e.target.value)}}
     placeholder="Room id"
      type="text" />
+     
 
      <button  style={{padding:10}} onClick={() => {router.push(`/room/${roomId}`)}}>Join room</button>
     </div>
