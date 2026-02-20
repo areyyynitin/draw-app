@@ -8,32 +8,31 @@
     "build": "tsc -b",
     "dev": "tsx src/index.ts"
   },
-
   "keywords": [],
   "dependencies": {
-    "@repo/common":"workspace:*",
-    "@repo/backend-common":"workspace:*",
+    "@repo/backend-common": "workspace:*",
+    "@repo/common": "workspace:*",
     "@repo/db": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
     "@types/dotenv": "^8.2.3",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "zod": "^4.3.6"
   },
-   "devDependencies": {
+  "devDependencies": {
     "@repo/backend-common": "workspace:*",
     "@repo/db": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "tsx": "^4.21.0"
   },
-  
   "author": "",
   "license": "ISC",
   "type": "commonjs"
-
 }

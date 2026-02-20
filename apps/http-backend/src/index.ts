@@ -6,9 +6,12 @@ import { authMiddleware } from "./middleware";
 import { JWT_SECRET } from "@repo/backend-common/config";
 import { CreateRoomSchema, CreateUserSchema, SignInSchema } from "@repo/common/types";
 import { prisma } from "@repo/db/client";
+import cors from "cors"
+
 
 dotenv.config();
 const app = express();
+app.use(cors())
 app.use(express.json());
 
 app.post("/signup", async (req, res) => {
